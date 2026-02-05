@@ -13,13 +13,12 @@ use agent_provider::LLM;
 use agent_tools::types::SearchResult;
 use agent_actions::{Action, GoogleSearch};
 use agent_utils::{
-    download_pdf::download_pdf,
     file_ops::{read_txt_files, write_to_file},
     html_ops
 };
 // use agent_macro::RoleMacro;
 
-use crate::role::{Role, RoleContext, RoleSetting};
+use crate::role::{Role, RoleSetting};
 
 
 // type ReportPrompt = fn(&str, &str) -> String;
@@ -85,9 +84,9 @@ impl ResearchAgent {
     /// Returns:
     ///     agent - The agent that will be used
     ///     agent_role_prompt (str): The prompt for the agent
-    pub fn choose_agent(&self, task: String) {}
+    pub fn choose_agent(&self, _task: String) {}
 
-    async fn call_agent(&self, action: &str, stream: bool) -> String {
+    async fn call_agent(&self, action: &str, _stream: bool) -> String {
         let messages = vec![
             json!({"role": "system", "content": &self.agent_role_prompt}),
             json!({"role": "user", "content": action}),

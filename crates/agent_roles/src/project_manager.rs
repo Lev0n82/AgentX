@@ -4,7 +4,7 @@ use std::sync::{Mutex, Arc, MutexGuard};
 use agent_macro::RoleMacro;
 use agent_schema::Message;
 use async_trait::async_trait;
-use tracing::{info, debug};
+use tracing::debug;
 
 use agent_memory::Memory;
 use agent_actions::{Action, WriteTasks};
@@ -50,7 +50,7 @@ impl ProjectManager {
         ProjectManager::new(name, profile, goal, constraints, desc)
     }
 
-    fn _before_action(&self, env_msgs: &Vec<Message>,  role_msgs: &Vec<Message>) -> String {
+    fn _before_action(&self, _env_msgs: &Vec<Message>,  _role_msgs: &Vec<Message>) -> String {
 
         String::new()
     }

@@ -3,7 +3,6 @@ use std::any::TypeId;
 use std::mem::transmute;
 use std::vec;
 
-use anyhow::Result;
 
 use super::agent::Agent;
 use super::component::Component;

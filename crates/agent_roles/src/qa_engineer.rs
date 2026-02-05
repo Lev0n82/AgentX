@@ -45,7 +45,7 @@ impl QaEngineer {
         QaEngineer::new(name, profile, goal, constraints, desc)
     }
 
-    fn _before_action(&self, env_msgs: &Vec<Message>,  role_msgs: &Vec<Message>) -> String {
+    fn _before_action(&self, _env_msgs: &Vec<Message>,  _role_msgs: &Vec<Message>) -> String {
         String::new()
     }
     fn _after_action(&self, message: Message) -> Message {

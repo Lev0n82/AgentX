@@ -1,7 +1,7 @@
 
 use agent_roles::Role;
 use agent_schema::Message;
-use tracing::{debug, info};
+use tracing::debug;
 
 use agent_environment::Environment;
 use crate::config::Config;

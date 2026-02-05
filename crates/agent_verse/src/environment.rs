@@ -1,7 +1,6 @@
 use super::agent_manager::{AgentIdAccessor, AgentManager};
 use super::component::Component;
 use super::system::System;
-use super::agent::RoleSetting;
 use super::agent::Agent;
 pub struct Environment {
     agent_manager: AgentManager,

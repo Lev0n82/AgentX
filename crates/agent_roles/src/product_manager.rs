@@ -3,7 +3,7 @@ use std::sync::{Mutex, Arc, MutexGuard};
 
 use agent_schema::Message;
 use async_trait::async_trait;
-use tracing::{debug, info};
+use tracing::debug;
 
 use agent_memory::Memory;
 use agent_actions::{Action, WritePRD};

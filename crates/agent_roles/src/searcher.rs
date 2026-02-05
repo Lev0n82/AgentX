@@ -58,7 +58,7 @@ impl Searcher {
         Searcher::new(name, profile, goal, constraints, desc)
     }
 
-    fn _before_action(&self, env_msgs: &Vec<Message>,  role_msgs: &Vec<Message>) {
+    fn _before_action(&self, env_msgs: &Vec<Message>,  _role_msgs: &Vec<Message>) {
         info!(" {:?}", env_msgs);
     }
 

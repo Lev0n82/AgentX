@@ -39,7 +39,7 @@ impl ChatHistory {
 }
 
 mod tests {
-    use super::*;
+    
 
     #[test]
     fn test_add_message() {

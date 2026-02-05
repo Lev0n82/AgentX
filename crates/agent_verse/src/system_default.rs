@@ -5,22 +5,21 @@ use super::component::Component;
 use async_trait::async_trait;
 
 use anyhow::{Ok, Result};
-use reqwest::Client;
 use futures;
 use tokio::task::JoinError;
 use std::fmt::Debug;
 use std::sync::Arc;
 use tokio::{
-    self, runtime,
-    sync::{self as tsync, mpsc, Mutex},
+    self,
+    sync::{mpsc, Mutex},
 };
 
 
 async fn fetch_url(
     url: &str,
-    id: usize,
+    _id: usize,
     shared_data_clone: Arc<Mutex<Vec<String>>>,
-    sender: mpsc::Sender<i32>,
+    _sender: mpsc::Sender<i32>,
 ) -> Result<String> {
     // loop {
     let response = reqwest::get(url).await?;
@@ -76,7 +75,7 @@ where
 
         // start workers by connection number
         let mut jobs = Vec::with_capacity(connections);
-        let (tx, mut rx) = mpsc::channel::<i32>(500);
+        let (tx, _rx) = mpsc::channel::<i32>(500);
 
         // start all worker and send request
         for id in agent_ids.iter() {

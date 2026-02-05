@@ -1,5 +1,5 @@
 // use std::collections::{HashMap, HashSet};
-use std::sync::{Arc, Mutex, MutexGuard};
+use std::sync::{Arc, Mutex};
 
 // use agent_prompts::PromptTemplate;
 // use agent_schema::Message;
@@ -7,14 +7,13 @@ use async_openai::types::ChatCompletionRequestMessage;
 // use async_trait::async_trait;
 use serde::{Deserialize, Serialize};
 use serde_json::json;
-use tracing::debug;
 
 use agent_actions::{Action, WritePRD};
 // use agent_macro::RoleMacro;
 // use agent_memory::Memory;
 use agent_provider::LLM;
 
-use crate::role::{Role, RoleContext, RoleSetting};
+use crate::role::RoleSetting;
 
 /// reference from the GPT Researcher
 const AUTO_AGENT_INSTRUCTIONS: &str = r#"
