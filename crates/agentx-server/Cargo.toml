@@ -1,0 +1,47 @@
+[package]
+name = "agentx-server"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "agentx-server"
+path = "src/main.rs"
+
+[dependencies]
+# Local dependencies
+agentx_core = { path = "../agentx" }
+agent_roles = { path = "../agent_roles" }
+agent_actions = { path = "../agent_actions" }
+
+# Web framework
+axum = { version = "0.7", features = ["ws", "macros"] }
+tower = { version = "0.4", features = ["full"] }
+tower-http = { version = "0.5", features = ["cors", "trace", "fs"] }
+
+# Async runtime
+tokio = { version = "1.31", features = ["full"] }
+futures = "0.3"
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# HTTP client (for Kasm API)
+reqwest = { version = "0.11", features = ["json"] }
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "fmt"] }
+
+# Environment
+dotenv = "0.15"
+
+# Error handling
+anyhow = "1.0"
+thiserror = "1.0"
+
+# UUID for session tracking
+uuid = { version = "1.4", features = ["v4", "serde"] }
+
+# Time
+chrono = { version = "0.4", features = ["serde"] }
