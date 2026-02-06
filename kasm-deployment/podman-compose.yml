@@ -1,0 +1,65 @@
+version: '3.8'
+
+services:
+  kasm-db:
+    image: postgres:12-alpine
+    container_name: kasm_db
+    environment:
+      POSTGRES_DB: kasm
+      POSTGRES_USER: kasmapp
+      POSTGRES_PASSWORD: ${KASM_DB_PASSWORD:-kasm_db_password}
+    volumes:
+      - kasm-db-data:/var/lib/postgresql/data
+    networks:
+      - kasm-network
+    restart: unless-stopped
+
+  kasm-redis:
+    image: redis:6-alpine
+    container_name: kasm_redis
+    networks:
+      - kasm-network
+    restart: unless-stopped
+
+  kasm-manager:
+    image: kasmweb/manager:1.14.0
+    container_name: kasm_manager
+    depends_on:
+      - kasm-db
+      - kasm-redis
+    environment:
+      DATABASE_URL: postgresql://kasmapp:${KASM_DB_PASSWORD:-kasm_db_password}@kasm-db/kasm
+      REDIS_URL: redis://kasm-redis:6379
+      SERVER_HOSTNAME: ${KASM_HOSTNAME:-localhost}
+    ports:
+      - "443:443"
+    networks:
+      - kasm-network
+    volumes:
+      - kasm-data:/opt/kasm/current
+    restart: unless-stopped
+
+  kasm-agent:
+    image: kasmweb/agent:1.14.0
+    container_name: kasm_agent
+    depends_on:
+      - kasm-manager
+    environment:
+      MANAGER_HOSTNAME: kasm-manager
+      SERVER_ID: ${KASM_AGENT_ID:-agent1}
+    networks:
+      - kasm-network
+    volumes:
+      - /run/podman/podman.sock:/var/run/docker.sock:Z
+      - kasm-profiles:/mnt/kasm_profiles
+    privileged: true
+    restart: unless-stopped
+
+networks:
+  kasm-network:
+    driver: bridge
+
+volumes:
+  kasm-db-data:
+  kasm-data:
+  kasm-profiles:

@@ -1,0 +1,22 @@
+#!/bin/bash
+# Development Helper Script for AgentX Developer Workspace
+
+echo "======================================"
+echo "  AgentX Developer Workspace Helper"
+echo "======================================"
+echo ""
+echo "Available Tools:"
+echo "  - VS Code (GUI)"
+echo "  - Python 3.11 (pytest, black, mypy)"
+echo "  - Node.js + npm"
+echo "  - Rust + Cargo"
+echo "  - Git, tmux, vim, nano"
+echo ""
+echo "Workspace Directory: /workspace"
+echo ""
+echo "Quick Commands:"
+echo "  Start VS Code: code /workspace"
+echo "  Python REPL: ipython"
+echo "  Node REPL: node"
+echo "  Rust version: rustc --version"
+echo ""
